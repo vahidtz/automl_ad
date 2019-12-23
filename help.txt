@@ -1,0 +1,54 @@
+
+This application is a binary classification AUTO ML which runs 6 different models and chooses
+the best one based on the score picked by user. After running this program, you will get the score diagram of
+all models, ROC chart of the best model, and pickled files of all 6 models.
+
+Models used in this application:
+    1- Decision Tree
+    2- Random Forest
+    3- K Nearest Neighbors
+    4- NeuralNetwork
+    5- SVM
+    6- Logistic Regression
+
+How to run Classification Auto ML?
+    1-  Copy all the files in this directory in your computer
+
+    2-  Initialize the config.ini with these parameters:
+
+        filename:  Full path of the input file. This app assumes that all test and training data are integrated in
+        one csv file.
+        Example: C:/Users/danta/PycharmProjects/automl_ad/diabet.csv
+
+        test_size = The size of test data you want be chooses off the whole data. This number is between 0 and 1.
+        Example: 0.25
+
+        target: The target column of your data
+        Example: class
+
+        scoring_type: The type of score you want Auto ML chooses the model based on. For this application available options
+        are: [accuracy, precision, average_precision_score, f1_score, log_loss, recall]
+        Example: accuracy
+
+    3-  After initializing the config.ini, please run the "Panel.py" file or "Panel.ipynb".
+
+What to expect after running this application?
+    1-  The pickled files of all models are stored in "artifacts" folder. Make sure to
+    copy the desired model into your local hard disk before running the next experiment as the it will
+    replace these files.
+
+    2- Scores of all models are shown in a bar chart.
+
+    3- ROC chart for the best model will be available on a separate figure.
+
+How to add a custom model?
+    In case of a new model needs to be added to this application, please follow these 2 steps:
+        1-  Pick a name for your module like "mymodel" and create a python file in "models" folder with your chosen module name
+        "mymodel.py" and define the "run" method similar to other models in this folder. Return the "scoring-value"
+        and "filename"  through "run" method.
+
+        2- Import your module in "Models_list.py" and add an element in the "models_dict" dictionary making the
+        name of your model pointing to "run" method in your module("mymodel.py").
+        Example: {"my model" : mymodel.py}
+
+        3- Now run the AUTO ML with the new model added, a new file will be generated as "my model.pickle" in artifacts folder.
